@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
 
+const authRouter = require("../auth/authRouter");
+
 const server = express();
 
 server.use(cors());
@@ -20,5 +22,7 @@ server.use(
     saveUninitialized: false
   })
 );
+
+server.use("/api/auth", authRouter);
 
 module.exports = server;
