@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
         
         res.status(401).json({ err: "Bad authentication "})
       } else {
-        req.user = { username: decodedToken.department };
+        req.user = { username: decodedToken.username };
 
         next();
       }
