@@ -3,6 +3,7 @@ const cors = require("cors");
 const session = require("express-session");
 
 const authRouter = require("../auth/authRouter");
+const prisonersRouter = require("../prisoners/prisonersRouter");
 
 const server = express();
 
@@ -28,5 +29,5 @@ server.get("/", (req, res) => {
 });
 
 server.use("/api/auth", authRouter);
-
+server.use("/api/prisoners", prisonersRouter);
 module.exports = server;
