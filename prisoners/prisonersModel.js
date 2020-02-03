@@ -24,7 +24,6 @@ function findById(id) {
 function findByPrison(id) {
   return db("prisons")
     .join("prisoners", "prisons.id", "prisoners.prison_id")
-
     .where("prison_id", "=", id)
     .select(
       "prisoners.id",
