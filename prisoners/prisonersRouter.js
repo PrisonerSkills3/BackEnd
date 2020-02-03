@@ -12,7 +12,15 @@ router.get('/', (req, res) => {
         })
 });
 
+// get by id
+router.get('/:id', (req,res) => {
+    const { id } = req.params;
+    pModel.findById()
+    
+})
 
+
+// get by prison id
 
 
 module.exports = router;
