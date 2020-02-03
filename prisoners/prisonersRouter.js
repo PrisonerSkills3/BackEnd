@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 });
 
 // get by id
-router.get('/:id', (req,res) => {
+router.get('/prisoners/:id', (req,res) => {
     const { id } = req.params;
     pModel.findById(id)
     .then(prisoner => {
@@ -28,7 +28,7 @@ router.get('/:id', (req,res) => {
 
 
 // get by prison id
-router.get('/prison/:id', (req,res) => {
+router.get('/:id/prisoners', (req,res) => {
     const { id } = req.params;
     pModel.findByPrison(id)
         .then( prisoner => {

@@ -29,5 +29,5 @@ server.get("/", (req, res) => {
 });
 
 server.use("/api/auth", authRouter.router);
-server.use("/api/prisoners", prisonersRouter);
+server.use("/api/prisons", prisonersRouter);
 module.exports = server;

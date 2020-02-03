@@ -7,7 +7,7 @@ module.exports = {
 };
 
 function find() {
-  return db("prisons").select();
+  return db("prisons").select("prison_name","number_of_prisoners","prison_address","image_url");
 }
 function findById(id) {
   console.log("id", id);
@@ -16,8 +16,8 @@ function findById(id) {
     .select();
 }
 function findByPrison(id) {
-  return db("prisoners")
-    .join("prisons", "prisons.id", "prisoners.prison_id")
+  return db("prisons")
+    .join("prisoners", "prisons.id", "=", "prisoners.prison_id")
     .where("prison_id", "=", id)
-    .select();
+    .select("prisoners.id","prisoners.prisoner_availability","prisoners.prisoner_skills","prisoners.prisoner_name","prisons.prison_name","prisons.number_of_prisoners","prisons.prison_address",);
 }
