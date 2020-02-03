@@ -17,6 +17,12 @@ exports.seed = function(knex) {
       prisoner_availability: false,
       prisoner_skills: "painting, clown services, childcare",
       prison_id: 2
+    },
+    {
+      prisoner_name: "Stewart Little",
+      prisoner_availability: true,
+      prisoner_skills: "fitting in small places, engineering, being cute",
+      prison_id: 2
     }
   ]);
 };

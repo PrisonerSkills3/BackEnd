@@ -7,7 +7,7 @@ module.exports = {
 };
 
 function find() {
-  return db("prisoners").select();
+  return db("prisons").select();
 }
 function findById(id) {
   console.log("id", id);
@@ -17,7 +17,7 @@ function findById(id) {
 }
 function findByPrison(id) {
   return db("prisoners", "prisons.id")
-    .join("prisons", "prisons.id", "prisoners.prisons_id")
+    .join("prisons", "prisons.id", "prisoners.prison_id")
     .where("prison_id", "=", id)
     .select();
 }
