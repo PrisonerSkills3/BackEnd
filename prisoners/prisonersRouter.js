@@ -15,11 +15,11 @@ router.get("/", (req, res) => {
 
 // get by id
 router.get("/prisoners/:id", (req, res) => {
-  req.body.prisoner_availability = Boolean(req.body.prisoner_availability);
   const { id } = req.params;
   pModel
     .findById(id)
     .then(prisoner => {
+      prisoner.prisoner_availability = Boolean(prisoner.prisoner_availability);
       res.status(200).json(prisoner);
     })
     .catch(err => {
@@ -30,11 +30,11 @@ router.get("/prisoners/:id", (req, res) => {
 
 // get by prison id
 router.get("/:id/prisoners", (req, res) => {
-  req.body.prisoner_availability = Boolean(req.body.prisoner_availability);
   const { id } = req.params;
   pModel
     .findByPrison(id)
     .then(prisoner => {
+      prisoner.prisoner_availability = Boolean(prisoner.prisoner_availability);
       res.status(200).json(prisoner);
     })
     .catch(err => {
