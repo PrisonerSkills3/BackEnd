@@ -1,5 +1,6 @@
 const pModel = require('./prisonersModel');
-const router = router('express').Router();
+const router = require('express').Router();
+
 
 router.get('/', (req, res) => {
     pModel.find()
@@ -15,7 +16,7 @@ router.get('/', (req, res) => {
 // get by id
 router.get('/:id', (req,res) => {
     const { id } = req.params;
-    pModel.findById()
+    pModel.findById(id)
     .then(prisoner => {
         res.status(200).json(prisoner);
     })
@@ -27,6 +28,17 @@ router.get('/:id', (req,res) => {
 
 
 // get by prison id
+router.get('/prison/:id', (req,res) => {
+    const { id } = req.params;
+    pModel.findByPrison(id)
+        .then( prisoner => {
+            res.status(200).json(prisoner);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({err: 'problem getting prisoner'});
+        })
+});
 
 
 module.exports = router;

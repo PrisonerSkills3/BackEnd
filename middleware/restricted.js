@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const  jwtSecret  = process.env.SECRET;
+const  jwtSecret  = process.env.SECRET || "Fever When You Hold Me Tight";
 
 module.exports = (req, res, next) => {
 
