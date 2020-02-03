@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const restricted = require('../middleware/restricted');
+const restricted = require("../middleware/restricted");
 const secret = process.env.SECRET;
 
 const authModel = require("./authModel");
@@ -55,7 +55,7 @@ router.post("/login", (req, res) => {
     });
 });
 
-router.post("/add-prisoner", restricted,  (req, res) => {
+router.post("/add-prisoner", restricted, (req, res) => {
   req.body.name && req.body.availability && req.body.skills
     ? authModel
         .addPrisoner(req.body)
@@ -73,7 +73,7 @@ router.post("/add-prisoner", restricted,  (req, res) => {
     : res.status(400).json({ error: "Prisoner information required" });
 });
 
-router.put("/edit-prisoner", restricted,  (req, res) => {
+router.put("/edit-prisoner/:id", restricted, (req, res) => {
   req.body.name && req.body.availability && req.body.skills
     ? authModel
         .editPrisoner(req.body, req.params.id)
@@ -91,7 +91,7 @@ router.put("/edit-prisoner", restricted,  (req, res) => {
     : res.status(400).json({ error: "Prisoner information required" });
 });
 
-router.delete("/delete-prisoner", restricted , (req, res) => {
+router.delete("/delete-prisoner/:id", restricted, (req, res) => {
   authModel
     .deletePrisoner(req.params.id)
     .then(() =>
