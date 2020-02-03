@@ -16,7 +16,13 @@ router.get('/', (req, res) => {
 router.get('/:id', (req,res) => {
     const { id } = req.params;
     pModel.findById()
-    
+    .then(prisoner => {
+        res.status(200).json(prisoner);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({err: 'problem getting prisoner'});
+    })
 })
 
 
