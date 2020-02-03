@@ -4,6 +4,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const restricted = require("../middleware/restricted");
 
+const secret = "Fever When You Hold Me Tight";
+
 const authModel = require("./authModel");
 
 router.post("/register", (req, res) => {
@@ -31,8 +33,6 @@ router.post("/login", (req, res) => {
       subject: user.id,
       username: user.username
     };
-
-    const secret = "Fever When You Hold Me Tight";
 
     const options = { expiresIn: "3hr" };
 
