@@ -1,25 +1,21 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-const  jwtSecret  = process.env.SECRET || "Fever When You Hold Me Tight";
+const jwtSecret = require("../auth/authRouter");
 
 module.exports = (req, res, next) => {
-
   const token = req.headers.authorization;
 
-  if(token) {
-    jwt.verify(token, jwtSecret, (err, decodedToken) => {
-      if(err) {
-        
-        res.status(401).json({ err: "Bad authentication "})
+  if (token) {
+    jwt.verify(token, jwtSecret.secret, (err, decodedToken) => {
+      if (err) {
+        res.status(401).json({ err: "Bad authentication " });
       } else {
         req.user = { username: decodedToken.username };
 
         next();
       }
-    })
+    });
   } else {
-
-    res.status(401).json({ msg: 'You are not loged in' });
+    res.status(401).json({ msg: "You are not loged in" });
   }
-
 };

@@ -106,4 +106,7 @@ router.delete("/delete-prisoner/:id", restricted, (req, res) => {
     );
 });
 
-module.exports = router;
+module.exports = {
+  router,
+  secret
+};

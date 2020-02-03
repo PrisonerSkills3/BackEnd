@@ -28,6 +28,6 @@ server.get("/", (req, res) => {
   res.status(200).json({ message: "Prisoner Skills API" });
 });
 
-server.use("/api/auth", authRouter);
+server.use("/api/auth", authRouter.router);
 server.use("/api/prisoners", prisonersRouter);
 module.exports = server;

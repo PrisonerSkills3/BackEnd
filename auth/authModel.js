@@ -28,5 +28,7 @@ function editPrisoner(changes, id) {
 }
 
 function deletePrisoner(id) {
-  return db("prisoners").insert(userData);
+  return db("prisoners")
+    .where({ id })
+    .del();
 }
