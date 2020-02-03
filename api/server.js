@@ -11,8 +11,8 @@ server.use(express.json());
 
 server.use(
   session({
-    name: "",
-    secret: "",
+    name: "Lovely, Lovely Leavenworth",
+    secret: "What's In The Box?",
     cookiue: {
       maxAge: 1 * 24 * 60 * 60 * 1000,
       secure: false
