@@ -12,9 +12,9 @@ server.use(express.json());
 
 server.use(
   session({
-    name: "",
-    secret: "",
-    cookiue: {
+    name: "Lovely, Lovely Leavenworth",
+    secret: "What's In The Box?",
+    cookie: {
       maxAge: 1 * 24 * 60 * 60 * 1000,
       secure: false
     },
@@ -23,6 +23,10 @@ server.use(
     saveUninitialized: false
   })
 );
+
+server.get("/", (req, res) => {
+  res.status(200).json({ message: "Prisoner Skills API" });
+});
 
 server.use("/api/auth", authRouter);
 server.use("/api/prisoners", prisonersRouter);
