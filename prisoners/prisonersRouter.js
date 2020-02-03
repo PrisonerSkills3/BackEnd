@@ -39,32 +39,33 @@ router.get('/', (req, res) => {
     
 
 // get by id
-router.get('/prisoners/:id', (req,res) => {
-    const { id } = req.params;
-    pModel.findById(id)
+router.get("/prisoners/:id", (req, res) => {
+  const { id } = req.params;
+  pModel
+    .findById(id)
     .then(prisoner => {
-        res.status(200).json(prisoner);
+      prisoner.prisoner_availability = Boolean(prisoner.prisoner_availability);
+      res.status(200).json(prisoner);
     })
     .catch(err => {
-        console.log(err);
-        res.status(500).json({err: 'problem getting prisoner'});
-    })
-})
-
-
-// get by prison id
-router.get('/:id/prisoners', (req,res) => {
-    const { id } = req.params;
-    pModel.findByPrison(id)
-        .then( prisoner => {
-            res.status(200).json(prisoner);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({err: 'problem getting prisoner'});
-        })
+      console.log(err);
+      res.status(500).json({ err: "problem getting prisoner" });
+    });
 });
 
+// get by prison id
+router.get("/:id/prisoners", (req, res) => {
+  const { id } = req.params;
+  pModel
+    .findByPrison(id)
+    .then(prisoner => {
+      prisoner.prisoner_availability = Boolean(prisoner.prisoner_availability);
+      res.status(200).json(prisoner);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ err: "problem getting prisoner" });
+    });
+});
 
 module.exports = router;
-

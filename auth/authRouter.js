@@ -60,7 +60,8 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/add-prisoner", restricted, (req, res) => {
-  req.body.name && req.body.availability && req.body.skills
+  console.log(req.body);
+  req.body.prisoner_name && req.body.prisoner_skills
     ? authModel
         .addPrisoner(req.body)
         .then(usr => {
@@ -78,7 +79,7 @@ router.post("/add-prisoner", restricted, (req, res) => {
 });
 
 router.put("/edit-prisoner/:id", restricted, (req, res) => {
-  req.body.name && req.body.availability && req.body.skills
+  req.body.prisoner_name && req.body.prisoner_skills
     ? authModel
         .editPrisoner(req.body, req.params.id)
         .then(usr => {
