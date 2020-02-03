@@ -27,7 +27,17 @@ router.get('/:id', (req,res) => {
 
 
 // get by prison id
-
+router.get('/prison/:id', (req,res) => {
+    const { id } = req.params;
+    pModel.findByPrison(id)
+        .then(prisoners => {
+            res.status(200).json(prisoners);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({err:'problem getting prisoners'});
+        })
+})
 
 module.exports = router;
 
