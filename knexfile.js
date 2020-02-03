@@ -2,7 +2,7 @@
 
 module.exports = {
   development: {
-    client: "postgresql",
+    client: "sqlite3",
     connection: {
       filename: "./database/prison.db3"
     },
