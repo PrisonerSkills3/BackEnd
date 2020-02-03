@@ -7,6 +7,12 @@ exports.up = function(knex) {
       .notNullable()
       .defaultTo();
     tbl.text("prisoner_skills").notNullable();
+    tbl
+      .integer("prison_id")
+      .unsigned()
+      .notNullable()
+      .references("id")
+      .inTable("prisons");
   });
 };
 

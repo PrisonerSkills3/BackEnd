@@ -1,5 +1,5 @@
 const pModel = require('./prisonersModel');
-const router = router('express').Router();
+const router = require('express').Router();
 
 router.get('/', (req, res) => {
     pModel.find()
