@@ -3,19 +3,20 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const restricted = require("../middleware/restricted");
-const secret = process.env.SECRET;
 
 const authModel = require("./authModel");
 
 router.post("/register", (req, res) => {
   const hash = bcrypt.hashSync(req.body.password, 17);
-  req.body.pasword = hash;
+  req.body.password = hash;
+
+  // console.log(req.body);
 
   req.body.username && req.body.password
     ? authModel
         .addPrison(req.body)
         .then(usr => {
-          consolelog(usr);
+          console.log(usr);
           res.status(200).json({ message: "User successfully created" });
         })
         .catch(() =>
@@ -31,6 +32,8 @@ router.post("/login", (req, res) => {
       username: user.username
     };
 
+    const secret = "Fever When You Hold Me Tight";
+
     const options = { expiresIn: "3hr" };
 
     return jwt.sign(payload, secret, options);
@@ -40,8 +43,9 @@ router.post("/login", (req, res) => {
     .findPrisonBy(req.body.username)
     .then(usr => {
       console.log(usr);
-      if (usr && bcrypt.compareSync(req.body.password, usr[0].passsword)) {
+      if (usr && bcrypt.compareSync(req.body.password, usr[0].password)) {
         req.session.user = req.body.username;
+        console.log(req.session);
         const token = generateToken(usr);
         res
           .status(200)

@@ -13,7 +13,7 @@ server.use(
   session({
     name: "Lovely, Lovely Leavenworth",
     secret: "What's In The Box?",
-    cookiue: {
+    cookie: {
       maxAge: 1 * 24 * 60 * 60 * 1000,
       secure: false
     },

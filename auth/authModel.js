@@ -13,6 +13,7 @@ function findPrisonBy(username) {
 }
 
 function addPrison(userData) {
+  console.log(userData);
   return db("prisons").insert(userData);
 }
 
