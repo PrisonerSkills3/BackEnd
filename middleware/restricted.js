@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
   if (token) {
     jwt.verify(token, jwtSecret.secret, (err, decodedToken) => {
       if (err) {
-        res.status(401).json({ err: "Bad authentication " });
+        res.status(401).json({ err: "Bad authentication" });
       } else {
         req.user = { username: decodedToken.username };
 
@@ -16,6 +16,6 @@ module.exports = (req, res, next) => {
       }
     });
   } else {
-    res.status(401).json({ msg: "You are not loged in" });
+    res.status(401).json({ msg: "You are not logged in" });
   }
 };
