@@ -16,7 +16,7 @@ function findById(id) {
     .select();
 }
 function findByPrison(id) {
-  return db("prisoners", "prisons.id")
+  return db("prisoners")
     .join("prisons", "prisons.id", "prisoners.prison_id")
     .where("prison_id", "=", id)
     .select();
