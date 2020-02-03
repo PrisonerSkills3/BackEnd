@@ -1,0 +1,19 @@
+const pModel = require('./prisonersModel');
+const router = router('express').Router();
+
+router.get('/', (req, res) => {
+    pModel.find()
+        .then(ret => {
+            res.status(200).json(ret);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({err:'problem getting prisoners'});
+        })
+});
+
+
+
+
+module.exports = router;
+
