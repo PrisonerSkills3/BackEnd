@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-const jwtSecret = require("../auth/authRouter");
+const jwtSecret = "Fever When You Hold Me Tight";
 
 module.exports = (req, res, next) => {
   const token = req.headers.authorization;
