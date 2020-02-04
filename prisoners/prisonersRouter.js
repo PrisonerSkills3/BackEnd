@@ -2,33 +2,13 @@ const pModel = require('./prisonersModel');
 const router = require('express').Router();
 
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     pModel.find()
-        .then(ret => {
-            // res.status(200).json(ret);
-            return ret;
+        .then(async ret => {
+            
+            res.status(200).json(ret);
+            
         })
-        .then( async prisons => {
-           let payload = [];
-           
-                payload = await prisons.map(prison => {
-                    let prisonersArray  = [];
-                    pModel.findByPrison(prison.id)
-                    .then(prisoner => {
-                        console.log('prisoner', prisoner);
-                        prisonersArray = [ ...prisoner ];
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })    
-                        return {
-                            ...prison,
-                            prisoners: prisonersArray,
-                        }   
-
-                });
-                    res.status(200).json(payload);
-            })
             .catch(err => {
                 console.log(err);
                 res.status(500).json({err:'problem getting prisoners'});

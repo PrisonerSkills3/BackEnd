@@ -8,12 +8,12 @@ module.exports = {
 
 function find() {
   return db("prisons").select(
-    "id",
-    "prison_name",
-    "number_of_prisoners",
-    "prison_address",
-    "image_url"
-  );
+   "prisons.id",
+   "prison_name",
+   "number_of_prisoners",
+   "prison_address",
+   "image_url",
+   )
 }
 function findById(id) {
   console.log("id", id);
