@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
 
-const jwtSecret = require("../auth/authRouter");
+const secret = "Fever When You Hold Me Tight";
 
-module.exports = (req, res, next) => {
+const resMiddleware = (req, res, next) => {
   const token = req.headers.authorization;
 
   if (token) {
-    jwt.verify(token, jwtSecret.secret, (err, decodedToken) => {
+    jwt.verify(token, secret, (err, decodedToken) => {
       if (err) {
         res.status(401).json({ err: "Bad authentication" });
       } else {
@@ -19,3 +19,4 @@ module.exports = (req, res, next) => {
     res.status(401).json({ msg: "You are not logged in" });
   }
 };
+module.exports = resMiddleware;

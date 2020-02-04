@@ -59,13 +59,12 @@ router.post("/login", (req, res) => {
     });
 });
 
-router.post("/add-prisoner", restricted, (req, res) => {
-  console.log(req.body);
+router.post("/add-prisoner", (req, res) => {
   req.body.prisoner_name && req.body.prisoner_skills
     ? authModel
         .addPrisoner(req.body)
         .then(usr => {
-          consolelog(usr);
+          console.log("add", usr);
           res
             .status(200)
             .json({ message: "Prisoner profile successfully created" });
@@ -78,12 +77,12 @@ router.post("/add-prisoner", restricted, (req, res) => {
     : res.status(400).json({ error: "Prisoner information required" });
 });
 
-router.put("/edit-prisoner/:id", restricted, (req, res) => {
+router.put("/edit-prisoner/:id", (req, res) => {
   req.body.prisoner_name && req.body.prisoner_skills
     ? authModel
         .editPrisoner(req.body, req.params.id)
         .then(usr => {
-          consolelog(usr);
+          console.log(usr);
           res
             .status(200)
             .json({ message: "Prisoner profile successfully updated" });
@@ -96,7 +95,7 @@ router.put("/edit-prisoner/:id", restricted, (req, res) => {
     : res.status(400).json({ error: "Prisoner information required" });
 });
 
-router.delete("/delete-prisoner/:id", restricted, (req, res) => {
+router.delete("/delete-prisoner/:id", (req, res) => {
   authModel
     .deletePrisoner(req.params.id)
     .then(() =>
