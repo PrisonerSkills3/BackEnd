@@ -8,12 +8,12 @@ module.exports = {
 
 function find() {
   return db("prisons").select(
-   "prisons.id",
-   "prison_name",
-   "number_of_prisoners",
-   "prison_address",
-   "image_url",
-   )
+    "prisons.id",
+    "prison_name",
+    "number_of_prisoners",
+    "prison_address",
+    "image_url"
+  );
 }
 function findById(id) {
   console.log("id", id);
@@ -32,6 +32,7 @@ function findByPrison(id) {
       "prisoners.prisoner_skills",
       "prisons.prison_name",
       "prisons.number_of_prisoners",
-      "prisons.prison_address"
+      "prisons.prison_address",
+      "prisons.image_url"
     );
 }
