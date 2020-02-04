@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const secret = "Fever When You Hold Me Tight";
 
-const resMiddleware = (req, res, next) => {
+const restricted = (req, res, next) => {
   const token = req.headers.authorization;
 
   if (token) {
@@ -12,11 +12,11 @@ const resMiddleware = (req, res, next) => {
     //   } else {
     //     req.user = { username: decodedToken.username };
 
-        next();
-      }
-    });
+    next();
+    //   }
+    // });
   } else {
     res.status(401).json({ msg: "You are not logged in" });
   }
 };
-module.exports = resMiddleware;
+module.exports = restricted;

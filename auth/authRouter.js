@@ -59,7 +59,7 @@ router.post("/login", (req, res) => {
     });
 });
 
-router.post("/add-prisoner", (req, res) => {
+router.post("/add-prisoner", restricted, (req, res) => {
   req.body.prisoner_name && req.body.prisoner_skills
     ? authModel
         .addPrisoner(req.body)
@@ -77,7 +77,7 @@ router.post("/add-prisoner", (req, res) => {
     : res.status(400).json({ error: "Prisoner information required" });
 });
 
-router.put("/edit-prisoner/:id", (req, res) => {
+router.put("/edit-prisoner/:id", restricted, (req, res) => {
   req.body.prisoner_name && req.body.prisoner_skills
     ? authModel
         .editPrisoner(req.body, req.params.id)
@@ -95,7 +95,7 @@ router.put("/edit-prisoner/:id", (req, res) => {
     : res.status(400).json({ error: "Prisoner information required" });
 });
 
-router.delete("/delete-prisoner/:id", (req, res) => {
+router.delete("/delete-prisoner/:id", restricted, (req, res) => {
   authModel
     .deletePrisoner(req.params.id)
     .then(() =>
