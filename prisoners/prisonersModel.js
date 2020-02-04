@@ -8,12 +8,12 @@ module.exports = {
 
 function find() {
   return db("prisons").select(
-   "prisons.id",
-   "prison_name",
-   "number_of_prisoners",
-   "prison_address",
-   "image_url",
-   )
+    "prisons.id",
+    "prison_name",
+    "number_of_prisoners",
+    "prison_address",
+    "image_url"
+  );
 }
 function findById(id) {
   console.log("id", id);
@@ -27,11 +27,12 @@ function findByPrison(id) {
     .where("prison_id", "=", id)
     .select(
       "prisoners.id",
+      "prisoners.prisoner_name",
       "prisoners.prisoner_availability",
       "prisoners.prisoner_skills",
-      "prisoners.prisoner_name",
       "prisons.prison_name",
       "prisons.number_of_prisoners",
-      "prisons.prison_address"
+      "prisons.prison_address",
+      "prisons.image_url"
     );
 }

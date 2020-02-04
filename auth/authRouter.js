@@ -60,12 +60,11 @@ router.post("/login", (req, res) => {
 });
 
 router.post("/add-prisoner", restricted, (req, res) => {
-  console.log(req.body);
   req.body.prisoner_name && req.body.prisoner_skills
     ? authModel
         .addPrisoner(req.body)
         .then(usr => {
-          consolelog(usr);
+          console.log("add", usr);
           res
             .status(200)
             .json({ message: "Prisoner profile successfully created" });
@@ -83,7 +82,7 @@ router.put("/edit-prisoner/:id", restricted, (req, res) => {
     ? authModel
         .editPrisoner(req.body, req.params.id)
         .then(usr => {
-          consolelog(usr);
+          console.log(usr);
           res
             .status(200)
             .json({ message: "Prisoner profile successfully updated" });
