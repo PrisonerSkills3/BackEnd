@@ -27,3 +27,21 @@ describe('get prisoners', function () {
         
     })
 })
+describe('get prisoners by id', function () {
+    it('gets prisoners', async function(){
+        
+        const res = await (await request.get('/api/prisons/prisoners/:id'));
+        expect(res.body.length).not.toBe(null);
+        expect(res.status).toBe(200);
+        
+    })
+})
+describe('get prisoners by prisoners id', function () {
+    it('gets prisoners', async function(){
+        
+        const res = await (await request.get('/api/prisons/prisoners/:id'));
+        expect(res.body.length).not.toBe(null);
+        expect(res.status).toBe(200);
+        
+    })
+})
