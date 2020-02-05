@@ -3,8 +3,9 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const restricted = require("../middleware/restricted");
+require("dotenv").config();
 
-const secret = "Fever When You Hold Me Tight";
+const jwSecret = process.env.JW_SECRET;
 
 const authModel = require("./authModel");
 
@@ -36,16 +37,14 @@ router.post("/login", (req, res) => {
 
     const options = { expiresIn: "3hr" };
 
-    return jwt.sign(payload, secret, options);
+    return jwt.sign(payload, jwSecret, options);
   };
 
   authModel
     .findPrisonBy(req.body.username)
     .then(usr => {
-      console.log(usr);
       if (usr && bcrypt.compareSync(req.body.password, usr[0].password)) {
         req.session.user = req.body.username;
-        console.log(req.session);
         const token = generateToken(usr);
         res
           .status(200)
@@ -106,7 +105,4 @@ router.delete("/delete-prisoner/:id", restricted, (req, res) => {
     );
 });
 
-module.exports = {
-  router,
-  secret
-};
+module.exports = router;
